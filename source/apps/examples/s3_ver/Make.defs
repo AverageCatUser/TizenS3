@@ -1,0 +1,3 @@
+ifeq ($(CONFIG_EXAMPLES_S3_VER),y)
+CONFIGURED_APPS += examples/s3_ver
+endif
