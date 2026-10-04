@@ -1,0 +1,52 @@
+#
+# ESP32-S3 chip configuration
+#
+
+comment "ESP32-S3 Configuration Options"
+
+config ESP32S3_FLASH_SIZE_MB
+	int "Flash size (MB)"
+	default 4
+	---help---
+		Size of the SPI flash on the module. The ESP32-S3 Super Mini
+		(ESP32-S3FH4R2) has 4 MB. Only used for the image header.
+
+config ESP32S3_FLASH
+	bool "SPI flash MTD driver (filesystem storage)"
+	default y
+	select MTD
+	---help---
+		Expose a window of the boot flash as an MTD device so TizenRT
+		can put a filesystem (SmartFS) on it.
+
+if ESP32S3_FLASH
+
+config ESP32S3_FLASH_FS_OFFSET
+	hex "Flash offset of the filesystem area"
+	default 0x110000
+	---help---
+		Must match the "storage" entry in the partition table and sit
+		after the app. Default leaves 1 MB for the app at 0x10000.
+
+config ESP32S3_FLASH_FS_SIZE
+	hex "Size of the filesystem area"
+	default 0x2f0000
+	---help---
+		Default runs to the end of a 4 MB flash (ESP32-S3 Super Mini).
+
+endif
+
+config ESP32S3_USB_PROBE
+	bool "USB-Serial-JTAG boot probe (diagnostic)"
+	default n
+	---help---
+		Print a banner + counter over the native USB port forever, right
+		at __start, feeding all watchdogs. Used to tell "USB works, OS
+		init is crashing" from "never boots" without a UART adapter.
+
+config ESP32S3_BOOT_TRACE
+	bool "Raw USB boot-stage checkpoints (diagnostic)"
+	default n
+	---help---
+		Print "TS3 cp=X rst=..." over the native USB port at each boot
+		stage, to find where startup dies on real hardware.

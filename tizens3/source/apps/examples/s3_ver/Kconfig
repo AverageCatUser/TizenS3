@@ -1,0 +1,4 @@
+config EXAMPLES_S3_VER
+	bool "TizenS3 ver command"
+	default n
+	depends on ARCH_CHIP_ESP32S3

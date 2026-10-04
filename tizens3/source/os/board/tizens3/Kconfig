@@ -1,0 +1,7 @@
+#
+# TizenS3 board configuration
+#
+
+config TIZENS3_BOARD_CONFIGDIR
+	string
+	default "tizens3"
