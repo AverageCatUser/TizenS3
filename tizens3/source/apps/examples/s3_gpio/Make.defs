@@ -1,3 +1,0 @@
-ifeq ($(CONFIG_EXAMPLES_S3_GPIO),y)
-CONFIGURED_APPS += examples/s3_gpio
-endif

@@ -1,4 +1,0 @@
-config EXAMPLES_S3_RGB
-	bool "TizenS3 rgb command"
-	default n
-	depends on ARCH_CHIP_ESP32S3

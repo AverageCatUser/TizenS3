@@ -1,3 +1,0 @@
-ifeq ($(CONFIG_EXAMPLES_S3_I2C),y)
-CONFIGURED_APPS += examples/s3_i2c
-endif
